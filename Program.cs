@@ -8,5 +8,7 @@ namespace BookingApp
         {
             Console.WriteLine("Hello World!");
         }
+        
+        BookingService myBookingService = new BookingService();
     }
 }
