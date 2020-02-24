@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookingApp {
     public class ServiceProvider {
@@ -13,9 +14,38 @@ namespace BookingApp {
         }
 
         public bool Book(Booking booking) {
-            Bookings.Add(booking);
-            return true;
+            
+            if (Bookings.Contains(booking, new BookingComparer())) {
+                
+                return false;
+            }
+            else {
+                Bookings.Add(booking);
+                return true;
+            }
         }
 
+    }
+
+    class BookingComparer : IEqualityComparer<Booking> {
+        public bool Equals(Booking x, Booking y) {
+            if (x == null || y == null) {
+                return false;
+            }
+
+            if (x.startTime == y.startTime) {
+                return true;
+            } 
+            
+            if (x.startTime < y.startTime && y.startTime < x.endTime) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public int GetHashCode(Booking obj) {
+            throw new System.NotImplementedException();
+        }
     }
 }
