@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,7 +6,8 @@ namespace BookingApp {
     public class ServiceProvider {
         public string name { get; private set; }
         private string timezone;
-        
+
+
         List<Booking> Bookings = new List<Booking>();
 
         public ServiceProvider(string name, string timezone) {
@@ -14,9 +16,13 @@ namespace BookingApp {
         }
 
         public bool Book(Booking booking) {
+            DateTime startTime = new DateTime(booking.startTime.Year, booking.startTime.Month, booking.startTime.Day, 9, 0, 0); 
+            DateTime endTime = new DateTime(booking.startTime.Year, booking.startTime.Month, booking.startTime.Day, 17, 0, 0);
+            if (!(booking.startTime >= startTime && booking.endTime <= endTime)) {
+                return false;
+            }
             
             if (Bookings.Contains(booking, new BookingComparer())) {
-                
                 return false;
             }
             else {

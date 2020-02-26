@@ -1,7 +1,9 @@
 using System;
 
 namespace BookingApp {
+    
     public class Booking {
+        
         public DateTime startTime { get; private set; }
         public DateTime endTime { get; }
 
@@ -9,5 +11,7 @@ namespace BookingApp {
             this.startTime = startTime;
             endTime = startTime.Add(duration);
         }
+        
     }
+    
 }
