@@ -14,15 +14,18 @@ namespace BookingApp
             var booking2 = new Booking(firstofJan2000930am, onehour);
 
             try {
-                if (myBookingService.Book(booking1)) {
-                    Console.WriteLine("booked!");
+                Tuple<bool, ServiceProvider> result1 = myBookingService.Book(booking1);
+                Tuple<bool, ServiceProvider> result2 = myBookingService.Book(booking2);
+                
+                if (result1.Item1) {
+                    Console.WriteLine($"booked by {result1.Item2.name}!");
                 }
                 else {
                     Console.WriteLine("not booked!");
                 }
 
-                if (myBookingService.Book(booking2)) {
-                    Console.WriteLine("booked 2!");
+                if (result2.Item1) {
+                    Console.WriteLine($"booked by {result2.Item2.name}!");
                 }
                 else {
                     Console.WriteLine("not booked 2!");

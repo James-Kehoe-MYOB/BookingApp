@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BookingApp {
     public class ServiceProvider {
-        private string name;
+        public string name { get; private set; }
         private string timezone;
         
         List<Booking> Bookings = new List<Booking>();
